@@ -8,15 +8,21 @@
         <ul>
             <% for (let p of products) { %>
             <li>
-                <img src="<%= p.productData.imageUrl %> " class="cart_img" alt="<%= p.productData.title %>">
-                <p><%= p.productData.title %> (<%= p.qty %> )</p>
+                <img src="<%= p.imageUrl %> " class="cart_img" alt="<%= p.title %>">
+                <p><%= p.title %> (<%= p.cartItem.quantity %>)</p>
                 <form action="/cart-delete-item" method="POST">
-                    <input type="hidden" value="<%= p.productData.id %>" name="productId">
+                    <input type="hidden" value="<%= p.id %>" name="productId">
                     <button type="submit" class="btn">Delete</button>
                 </form>
             </li>
             <% } %>
         </ul>
+        <hr>
+        <div class="">
+            <form action="/create-order" method="POST">
+                <button type="submit" class="btn">Order Now!</button>
+            </form>
+        </div>
         <p>Total: $ <%= totalPrice %> </p>
         <% } else { %>
         <h1>No Product in Cart!</h1>
